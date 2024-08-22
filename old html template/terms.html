@@ -1,0 +1,182 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecommerce Shop</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.1.0/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<style>
+ .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+</style>
+<body>
+
+        <!-- Preloader -->
+
+        <!-- Black Banner Ribbon -->
+        <div class="bg-black text-white text-center py-2">
+            <p>Latest store sale: 50% off on all summer collections!</p>
+        </div>
+    
+
+    <!-- Sticky Navbar -->
+    <header class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto p-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-black">Shop Name</h1>
+            <!-- Share icon for mobile -->
+            <div class="md:hidden">
+                <button onclick="shareStore()" class="btn btn-square btn-ghost">
+                    <i class="fas fa-share-alt"></i>
+                </button>
+            </div>
+            <!-- Desktop navigation -->
+            <nav class="hidden md:flex space-x-4">
+                <a href="#" class="text-black">Home</a>
+                <a href="#" class="text-black">Products</a>
+                <a href="#" class="text-black">Collections</a>
+                <a href="#" class="text-black">About</a>
+                <a href="#" class="text-black">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+
+
+
+    <!-- Banner -->
+
+<section>
+<!-- terms of service here -->
+
+<h1 class="text-2xl font-bold mb-4">Terms Of Service</h1>
+
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam dolorem magnam eligendi dolorum cupiditate nam facere deserunt neque culpa! Dolorum praesentium aperiam dolore, non eum qui illum impedit quis tenetur?</p>
+
+</section>
+
+
+
+
+
+
+<!-- Footer -->
+<footer class="bg-neutral text-neutral-content">
+    <div class="container mx-auto px-4 py-8">
+        <div class="flex flex-wrap justify-between">
+
+            <!-- Column 2: Social Media Links -->
+            <div class="w-full md:w-1/4 mb-4 md:mb-0">
+                <!-- <h3 class="text-lg font-bold mb-2 text-center">Follow Us</h3> -->
+                <div class="flex justify-center flex-wrap gap-4">
+                    <a href="#" class="btn btn-ghost btn-square">
+                        <i class="fab fa-facebook-f text-2xl"></i>
+                    </a>
+                    <a href="#" class="btn btn-ghost btn-square">
+                        <i class="fab fa-youtube text-2xl"></i>
+                    </a>
+                    <a href="#" class="btn btn-ghost btn-square">
+                        <i class="fab fa-twitter text-2xl"></i>
+                    </a>
+                    <a href="#" class="btn btn-ghost btn-square">
+                        <i class="fab fa-instagram text-2xl"></i>
+                    </a>
+                    <a href="#" class="btn btn-ghost btn-square">
+                        <i class="fab fa-linkedin-in text-2xl"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Column 1: Logo -->
+            <div class="w-full md:w-1/4 mb-4 md:mb-0 flex flex-col items-center text-center">
+                <h3 class="text-lg font-bold mb-2">Shop Name</h3>
+                <!-- <p>Providing reliable products since 2023</p> -->
+            </div>
+
+
+            <!-- Column 3: Links Column 1 -->
+            <div class="w-full md:w-1/4 mb-4 md:mb-0">
+                <h3 class="text-lg font-bold mb-2 text-center">Links</h3>
+                <ul class="text-center">
+                    <li><a href="#" class="link link-hover">Terms of Service</a></li>
+                    <li><a href="#" class="link link-hover">Privacy Policy</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 4: Links Column 2 -->
+            <div class="w-full md:w-1/4 mb-4 md:mb-0">
+                <h3 class="text-lg font-bold mb-2 text-center">More Links</h3>
+                <ul class="text-center">
+                    <li><a href="#" class="link link-hover">About</a></li>
+                    <li><a href="#" class="link link-hover">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Bottom Tag -->
+        <div class="text-center mt-8">
+            <p class="text-sm">
+                Made with love by <a href="https://digitalbazaar.io" class="link link-hover">digitalbazaar.io</a>
+            </p>
+        </div>
+    </div>
+</footer>
+    <!-- Mobile Bottom Navigation -->
+    <div class="btm-nav md:hidden">
+        <button class="text-primary">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
+            <span class="btm-nav-label">Home</span>
+        </button>
+        <button class="text-primary">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+            <span class="btm-nav-label">catalog</span>
+        </button>
+        <button class="text-primary">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+            <span class="btm-nav-label">Cart</span>
+        </button>
+
+    </div>
+        <!-- Floating WhatsApp Button -->
+        <a href="https://wa.me/your_whatsapp_number" class="fixed bottom-20 right-4 bg-green-500 text-white rounded-full p-3 shadow-lg md:bottom-4">
+            <i class="fab fa-whatsapp fa-2x"></i>
+        </a>
+    
+
+
+        <script>
+            function shareStore() {
+    if (navigator.share) {
+        navigator.share({
+            title: 'Check out this awesome store!',
+            text: 'I found this great online store. You should check it out!',
+            url: window.location.href
+        }).then(() => {
+            console.log('Thanks for sharing!');
+        })
+        .catch(console.error);
+    } else {
+        // Fallback for browsers that don't support the Web Share API
+        alert('Share this page: ' + window.location.href);
+    }
+}
+        </script>
+
+
+</body>
+</html>

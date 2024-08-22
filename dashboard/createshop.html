@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Shop</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .shop-container {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+        }
+        .logo-placeholder {
+            width: 120px;
+            height: 120px;
+            background-color: #e9ecef;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: #6c757d;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row min-vh-100 justify-content-center align-items-center">
+            <div class="col-12">
+                <div class="shop-container bg-white rounded shadow-sm p-4">
+                    <h2 class="text-center mb-4">Create Shop</h2>
+                    <form>
+                        <div class="mb-3">
+                            <label for="shop-name" class="form-label">Shop Name</label>
+                            <input type="text" class="form-control" id="shop-name" placeholder="Enter your shop name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="shop-logo" class="form-label">Shop Logo</label>
+                            <input type="file" class="form-control" id="shop-logo">
+                        </div>
+                        <div class="mb-3">
+                            <label for="address" class="form-label">Address</label>
+                            <textarea class="form-control" id="address" placeholder="Enter shop address" rows="3"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="whatsapp" class="form-label">WhatsApp Number</label>
+                            <input type="text" class="form-control" id="whatsapp" placeholder="Enter WhatsApp number">
+                        </div>
+                        <div class="mb-3">
+                            <label for="owner" class="form-label">Owner</label>
+                            <input type="text" class="form-control" id="owner" value="John Doe" readonly>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">Create Shop</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS (optional, only needed if you use Bootstrap's JavaScript components) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
