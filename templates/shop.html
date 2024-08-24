@@ -4,27 +4,19 @@
     <!-- Banner -->
     <div class="container mx-auto px-4 py-8">
         <div class="carousel w-full max-w-4xl mx-auto rounded-box shadow-lg" id="banner-carousel">
-            <div id="slide1" class="carousel-item relative w-full">
-                <img src="/static/1.jpg" class="w-full object-cover h-[300px] md:h-[400px]" alt="Banner 1" />
-                <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                    <button onclick="moveSlide(-1)" class="btn btn-circle">❮</button> 
-                    <button onclick="moveSlide(1)" class="btn btn-circle">❯</button>
-                </div>
-            </div> 
-            <div id="slide2" class="carousel-item relative w-full">
-                <img src="/static/2.jpg" class="w-full object-cover h-[300px] md:h-[400px]" alt="Banner 2" />
-                <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                    <button onclick="moveSlide(-1)" class="btn btn-circle">❮</button> 
-                    <button onclick="moveSlide(1)" class="btn btn-circle">❯</button>
-                </div>
-            </div> 
-            <div id="slide3" class="carousel-item relative w-full">
-                <img src="/static/3.jpg" class="w-full object-cover h-[300px] md:h-[400px]" alt="Banner 3" />
-                <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                    <button onclick="moveSlide(-1)" class="btn btn-circle">❮</button> 
-                    <button onclick="moveSlide(1)" class="btn btn-circle">❯</button>
-                </div>
+            
+            {{ range .CarouselItems }}
+            <div id="{{ .ID }}" class="carousel-item relative w-full">
+                <a href="{{ .LinkURL }}">
+                    <img src="{{ .ImageURL }}" class="w-full object-cover h-[300px] md:h-[400px]" alt="{{ .AltText }}" />
+                    <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+                        <button onclick="moveSlide(-1)" class="btn btn-circle">❮</button> 
+                        <button onclick="moveSlide(1)" class="btn btn-circle">❯</button>
+                    </div>
+                </a>
             </div>
+            {{ end }}
+            
         </div>
     </div>
 
@@ -57,7 +49,9 @@
 
 <!-- Sale Text -->
 <div class="bg-accent text-accent-content text-center py-2">
-    <p class="text-lg font-bold">Sale! Up to 50% off on selected items!</p>
+    <marquee direction="right" behavior="alternate" >
+        <p class="text-lg font-bold">{{.SecondMessage}}</p>
+    </marquee>
 </div>
 
 <!-- Product Grid -->
@@ -73,7 +67,7 @@
 </section>
 
 <!-- About Us -->
-<section class="container mx-auto px-4 py-8">
+<section  id="about" class="container mx-auto px-4 py-8">
     <h2 class="text-2xl font-bold mb-4">About Us</h2>
     <p class="mb-4">{{ .About }}</p>
 </section>
@@ -87,15 +81,9 @@
 </section>
 
 <!-- Contact Details and Form -->
-<section class="container mx-auto px-4 py-8 bg-white">
+<section id="contact" class="container mx-auto px-4 py-8 bg-white">
     <h2 class="text-2xl font-bold mb-4">Contact Us</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div>
-            <p>Email: {{ .Contact.Email }}</p>
-            <p>Phone: {{ .Contact.MobileNumber }}</p>
-            <p>WhatsApp: {{ .Contact.WhatsappNumber }}</p>
-            <p>Address: {{ .Address.Street }}, {{ .Address.City }}, {{ .Address.State }}, {{ .Address.Country }} - {{ .Address.Pincode }}</p>
-        </div>
         <div class="contact-info">
             <div class="contact-item">
                 <span>Email:</span>
@@ -143,7 +131,7 @@
             <input type="text" id="name" placeholder="Name" class="input input-bordered w-full mb-2" required>
             <input type="email" id="email" placeholder="Email (optional)" class="input input-bordered w-full mb-2">
             <textarea id="message" class="textarea textarea-bordered w-full mb-2" placeholder="Message" required></textarea>
-            <button type="submit" class="btn btn-primary">Send Message</button>
+            <button type="submit" class="btn btn-primary text-white">Send Message</button>
         </form>
     </div>
 </section>

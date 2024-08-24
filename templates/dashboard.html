@@ -1,0 +1,150 @@
+{{template "dashboard_header.html" .}}
+
+    <div class="container mt-3">
+        <div class="d-flex align-items-center justify-content-between">
+            <h1>Welcome Ajay</h1>
+            <button class="btn btn-primary" >
+                <i class="fas fa-share-alt"></i>
+                
+            </button>
+        </div>
+        <section class="mb-4">
+            <div class="row">
+                <div class="col-6">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Product Views</h5>
+                            <p class="card-text display-4">45k</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Shop Views</h5>
+                            <p class="card-text display-4">45k</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <section class="mb-4">
+            <h2>Collections</h2>
+            <button class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#createProductModal">
+                Create Product
+            </button>
+
+            <div class="product-list list-group">
+                <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#productDetailModal">
+                    <span class="product-name">Product Name 1</span>
+                    <div style="display: flex; gap: 30px;">
+                        <i class="fas fa-star star-icon"></i>
+                        <i class="fas fa-share-alt"></i>
+                    </div>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#productDetailModal">
+                    <span class="product-name">Product Name 2</span>
+                    <div style="display: flex; gap: 30px;">
+                        <i class="fas fa-star star-icon"></i>
+                        <i class="fas fa-share-alt"></i>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <!-- Create Product Modal -->
+    <div class="modal fade" id="createProductModal" tabindex="-1" aria-labelledby="createProductModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="createProductModalLabel">Create Product</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="productName" class="form-label">Product Name</label>
+                            <input type="text" class="form-control" id="productName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="productDescription" class="form-label">Description</label>
+                            <textarea class="form-control" id="productDescription" rows="3" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="productPrice" class="form-label">Price</label>
+                            <input type="number" class="form-control" id="productPrice" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="productImage" class="form-label">Image</label>
+                            <input type="file" class="form-control" id="productImage" accept="image/*" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="productCollection" class="form-label">Collection</label>
+                            <select class="form-select" id="productCollection" required>
+                                <option value="">Select a collection</option>
+                                <option value="1">Collection 1</option>
+                                <option value="2">Collection 2</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Create Product</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Detail Modal -->
+    <div class="modal fade" id="productDetailModal" tabindex="-1" aria-labelledby="productDetailModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="productDetailModalLabel">Product Details</h5>
+                    <div>
+                        <button type="button" class="btn btn-link" id="editProductBtn"><i class="fas fa-edit"></i></button>
+                        <button type="button" class="btn btn-link" id="shareProductBtn"><i class="fas fa-share-alt"></i></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div id="productDetails">
+                        <!-- Product details will be displayed here -->
+                    </div>
+                    <form id="editProductForm" style="display: none;">
+                        <!-- Edit form fields will be here, similar to create product form -->
+                    </form>
+                </div>
+                <div class="modal-footer" id="editProductFooter" style="display: none;">
+                    <button type="button" class="btn btn-danger" id="deleteProductBtn">Delete</button>
+                    <button type="button" class="btn btn-primary" id="updateProductBtn">Update</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript for handling star icon click
+        document.querySelectorAll('.star-icon').forEach(icon => {
+            icon.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                this.classList.toggle('filled');
+            });
+        });
+
+        // JavaScript for handling edit button click in product detail modal
+        document.getElementById('editProductBtn').addEventListener('click', function() {
+            document.getElementById('productDetails').style.display = 'none';
+            document.getElementById('editProductForm').style.display = 'block';
+            document.getElementById('editProductFooter').style.display = 'flex';
+        });
+
+        // Add more JavaScript for handling other interactions as needed
+    </script>
+{{template "dashboard_footer.html" .}}

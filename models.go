@@ -42,6 +42,8 @@ type Shop struct {
 	Name          string
 	Logo          string
 	TopMessage    string
+	SecondMessage string
+	CarouselItems []CarouselItem
 	Products      []Product
 	Contact       Contact // Embedded Contact struct
 	Message       string
@@ -51,11 +53,23 @@ type Shop struct {
 	PrivacyPolicy string
 }
 
+type CarouselItem struct {
+	ID       string
+	ImageURL string
+	AltText  string
+	LinkURL  string
+}
+
 var shop = Shop{
-	Name:       "My Shop",
-	Logo:       "/static/logo.png", // Path or URL to the shop logo
-	TopMessage: "Welcome to My Shop!",
-	Products:   Products,
+	Name:          "My Shop",
+	Logo:          "/static/logo.png", // Path or URL to the shop logo
+	TopMessage:    "Welcome to My Shop!",
+	SecondMessage: `Sale! Up to 50% off on selected items!`,
+	Products:      Products,
+	CarouselItems: []CarouselItem{
+		{ID: "slide1", ImageURL: "/static/1.jpg", AltText: "Banner 1", LinkURL: "/2323"},
+		{ID: "slide2", ImageURL: "/static/2.jpg", AltText: "Banner 2", LinkURL: "232323"},
+		{ID: "slide3", ImageURL: "/static/3.jpg", AltText: "Banner 3", LinkURL: "4r4r"}},
 	Contact: Contact{
 		Instagram:      "https://instagram.com/fb",
 		Facebook:       "https://facebook.com/fb",
