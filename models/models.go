@@ -1,6 +1,12 @@
-package main
+package models
+
+import (
+	"gorm.io/gorm"
+)
 
 type Product struct {
+	gorm.Model
+
 	ID          int
 	Name        string
 	Description string
@@ -18,6 +24,8 @@ var Products = []Product{
 }
 
 type Address struct {
+	gorm.Model
+
 	City     string
 	Street   string
 	State    string
@@ -28,6 +36,8 @@ type Address struct {
 }
 
 type Contact struct {
+	gorm.Model
+
 	Instagram      string
 	Facebook       string
 	Linkedin       string
@@ -39,6 +49,8 @@ type Contact struct {
 }
 
 type Shop struct {
+	gorm.Model
+
 	Name          string
 	Logo          string
 	TopMessage    string
@@ -54,6 +66,8 @@ type Shop struct {
 }
 
 type CarouselItem struct {
+	gorm.Model
+
 	ID       string
 	ImageURL string
 	AltText  string
