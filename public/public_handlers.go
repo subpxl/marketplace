@@ -1,8 +1,8 @@
-package handlers
+package public
 
 import (
 	"marketplace/config"
-	"marketplace/models"
+	"marketplace/dashboard"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -17,7 +17,7 @@ func NewPublicHandler(appConfig *config.AppConfig) *PublicHandler {
 }
 
 func (h *PublicHandler) HandleShop(c *gin.Context) {
-	shop := models.Shop{}
+	shop := dashboard.Shop{}
 	c.HTML(http.StatusOK, "shop.html", gin.H{
 		"name":           shop.Name,
 		"logo":           shop.Logo,

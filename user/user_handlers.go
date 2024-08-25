@@ -1,4 +1,4 @@
-package handlers
+package user
 
 import (
 	"marketplace/config"
@@ -8,30 +8,19 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-type AuthHandler struct {
+type UserHandler struct {
 	AppConfig *config.AppConfig
 }
 
-func NewAuthHandler(appConfig *config.AppConfig) *AuthHandler {
-	return &AuthHandler{AppConfig: appConfig}
-}
-
-type LoginForm struct {
-	Username string `form:"username" binding:"required"`
-	Password string `form:"password" binding:"required"`
-}
-type SignupForm struct {
-	Username        string `form:"username" binding:"required"`
-	Email           string `form:"email" binding:"required,email"`
-	Password        string `form:"password" binding:"required"`
-	ConfirmPassword string `form:"confirm-password" binding:"required,eqfield=Password"`
+func NewUserHandler(appConfig *config.AppConfig) *UserHandler {
+	return &UserHandler{AppConfig: appConfig}
 }
 
 var users = map[string]string{
 	"user1": "$2a$14$Uhz9JYlCoKxknD1P6t2W.eNTn.vYeFbxJD8LqP3RAC/U9AEoGip8O", // password: "password123"
 }
 
-func (h *AuthHandler) HandleLogin(c *gin.Context) {
+func (h *UserHandler) HandleLogin(c *gin.Context) {
 
 	if c.Request.Method == http.MethodGet {
 		c.HTML(200, "login.html", nil)
@@ -60,7 +49,7 @@ func (h *AuthHandler) HandleLogin(c *gin.Context) {
 	}
 
 }
-func (h *AuthHandler) HandleSignup(c *gin.Context) {
+func (h *UserHandler) HandleSignup(c *gin.Context) {
 	if c.Request.Method == http.MethodGet {
 		c.HTML(200, "signup.html", nil)
 
@@ -93,7 +82,7 @@ func (h *AuthHandler) HandleSignup(c *gin.Context) {
 
 }
 
-func (h *AuthHandler) HandleLogout(c *gin.Context) {
+func (h *UserHandler) HandleLogout(c *gin.Context) {
 	if c.Request.Method == http.MethodGet {
 
 		c.JSON(200, "logout hit")

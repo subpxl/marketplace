@@ -1,8 +1,7 @@
-package handlers
+package product
 
 import (
 	"marketplace/config"
-	"marketplace/models"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -18,7 +17,7 @@ func NewProductHandler(appConfig *config.AppConfig) *ProductHandler {
 
 // Create a new product
 func (h *ProductHandler) CreateProduct(c *gin.Context) {
-	var product models.Product
+	var product Product
 	if err := c.ShouldBindJSON(&product); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
@@ -34,7 +33,7 @@ func (h *ProductHandler) CreateProduct(c *gin.Context) {
 
 // Get all products
 func (h *ProductHandler) GetProducts(c *gin.Context) {
-	var products []models.Product
+	var products []Product
 	if err := h.AppConfig.DB.Find(&products).Error; err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
@@ -46,7 +45,7 @@ func (h *ProductHandler) GetProducts(c *gin.Context) {
 // Get a single product by ID
 func (h *ProductHandler) GetProduct(c *gin.Context) {
 	id := c.Param("id")
-	var product models.Product
+	var product Product
 	if err := h.AppConfig.DB.First(&product, id).Error; err != nil {
 		c.JSON(http.StatusNotFound, gin.H{"error": "Product not found"})
 		return
@@ -58,7 +57,7 @@ func (h *ProductHandler) GetProduct(c *gin.Context) {
 // Update a product
 func (h *ProductHandler) UpdateProduct(c *gin.Context) {
 	id := c.Param("id")
-	var product models.Product
+	var product Product
 	if err := h.AppConfig.DB.First(&product, id).Error; err != nil {
 		c.JSON(http.StatusNotFound, gin.H{"error": "Product not found"})
 		return
@@ -80,7 +79,7 @@ func (h *ProductHandler) UpdateProduct(c *gin.Context) {
 // Delete a product
 func (h *ProductHandler) DeleteProduct(c *gin.Context) {
 	id := c.Param("id")
-	if err := h.AppConfig.DB.Delete(&models.Product{}, id).Error; err != nil {
+	if err := h.AppConfig.DB.Delete(&Product{}, id).Error; err != nil {
 		c.JSON(http.StatusNotFound, gin.H{"error": "Product not found"})
 		return
 	}
