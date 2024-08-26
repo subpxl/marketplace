@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/unrolled/render"
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -23,8 +24,13 @@ var users = map[string]string{
 func (h *UserHandler) HandleLogin(c *gin.Context) {
 
 	if c.Request.Method == http.MethodGet {
-		c.HTML(200, "login.html", nil)
+		// c.HTML(200, "login.html", nil)
 
+		if err := h.AppConfig.Render.HTML(c.Writer, http.StatusOK, "user/login", gin.H{"Title": "Dashboard"}, render.HTMLOptions{
+			Layout: "", // Disable layout
+		}); err != nil {
+			c.String(http.StatusInternalServerError, "Error rendering template: %v", err)
+		}
 	} else {
 		var form LoginForm
 
@@ -51,8 +57,13 @@ func (h *UserHandler) HandleLogin(c *gin.Context) {
 }
 func (h *UserHandler) HandleSignup(c *gin.Context) {
 	if c.Request.Method == http.MethodGet {
-		c.HTML(200, "signup.html", nil)
+		// c.HTML(200, "signup.html", nil)
 
+		if err := h.AppConfig.Render.HTML(c.Writer, http.StatusOK, "user/signup", gin.H{"Title": "Dashboard"}, render.HTMLOptions{
+			Layout: "", // Disable layout
+		}); err != nil {
+			c.String(http.StatusInternalServerError, "Error rendering template: %v", err)
+		}
 	} else {
 
 		var form SignupForm

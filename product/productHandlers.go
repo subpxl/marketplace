@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/unrolled/render"
 )
 
 type ProductHandler struct {
@@ -17,18 +18,30 @@ func NewProductHandler(appConfig *config.AppConfig) *ProductHandler {
 
 // Create a new product
 func (h *ProductHandler) CreateProduct(c *gin.Context) {
-	var product Product
-	if err := c.ShouldBindJSON(&product); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		return
-	}
+	if c.Request.Method == http.MethodGet {
+		c.HTML(http.StatusOK, "product/create.html", gin.H{})
+		if err := h.AppConfig.Render.HTML(c.Writer, http.StatusOK, "product/create", gin.H{"Title": "Dashboard"}, render.HTMLOptions{
+			Layout: "", // Disable layout
+		}); err != nil {
+			c.String(http.StatusInternalServerError, "Error rendering template: %v", err)
+		}
 
-	if err := h.AppConfig.DB.Create(&product).Error; err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
-		return
-	}
+	} else {
 
-	c.JSON(http.StatusCreated, product)
+		var product Product
+
+		if err := c.ShouldBindJSON(&product); err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+			return
+		}
+
+		if err := h.AppConfig.DB.Create(&product).Error; err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+			return
+		}
+
+		c.JSON(http.StatusCreated, product)
+	}
 }
 
 // Get all products

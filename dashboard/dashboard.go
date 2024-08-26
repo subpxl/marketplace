@@ -16,6 +16,8 @@ type Address struct {
 	Country  string
 	Landmark string
 	Location string
+	ShopID   uint // Foreign key for CarouselItems
+
 }
 
 type Contact struct {
@@ -29,15 +31,8 @@ type Contact struct {
 	MobileNumber   string
 	WhatsappNumber string
 	Email          string
-}
+	ShopID         uint // Foreign key for CarouselItems
 
-type CarouselItem struct {
-	gorm.Model
-
-	ID       string
-	ImageURL string
-	AltText  string
-	LinkURL  string
 }
 
 type Shop struct {
@@ -47,26 +42,37 @@ type Shop struct {
 	Logo          string
 	TopMessage    string
 	SecondMessage string
-	CarouselItems []CarouselItem
-	Products      []product.Product
-	Contact       Contact // Embedded Contact struct
+	CarouselItems []CarouselItem    `gorm:"foreignKey:ShopID"`
+	Products      []product.Product `gorm:"foreignKey:ShopID"` // Define foreign key for Products
+
+	Contact       Contact `gorm:"foreignKey:ShopID"` // Embedded Contact struct
 	Message       string
 	About         string
-	Address       Address // Embedded Address struct
+	Address       Address `gorm:"foreignKey:ShopID"` // Embedded Address struct
 	Terms         string
 	PrivacyPolicy string
+	ShopID        uint // Foreign key for CarouselItems
 }
 
-var shop = Shop{
+type CarouselItem struct {
+	gorm.Model
+
+	ImageURL string
+	AltText  string
+	LinkURL  string
+	ShopID   uint // Foreign key referencing Shop model
+}
+
+var MockShop = Shop{
 	Name:          "My Shop",
 	Logo:          "/static/logo.png", // Path or URL to the shop logo
 	TopMessage:    "Welcome to My Shop!",
 	SecondMessage: `Sale! Up to 50% off on selected items!`,
 	Products:      product.Products,
 	CarouselItems: []CarouselItem{
-		{ID: "slide1", ImageURL: "/static/1.jpg", AltText: "Banner 1", LinkURL: "/2323"},
-		{ID: "slide2", ImageURL: "/static/2.jpg", AltText: "Banner 2", LinkURL: "232323"},
-		{ID: "slide3", ImageURL: "/static/3.jpg", AltText: "Banner 3", LinkURL: "4r4r"}},
+		{ImageURL: "/static/1.jpg", AltText: "Banner 1", LinkURL: "/2323"},
+		{ImageURL: "/static/2.jpg", AltText: "Banner 2", LinkURL: "232323"},
+		{ImageURL: "/static/3.jpg", AltText: "Banner 3", LinkURL: "4r4r"}},
 	Contact: Contact{
 		Instagram:      "https://instagram.com/fb",
 		Facebook:       "https://facebook.com/fb",

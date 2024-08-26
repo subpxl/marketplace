@@ -11,6 +11,8 @@ type Product struct {
 	Price       float64
 	Image       string
 	Slug        string
+	ShopID      uint // Foreign key referencing the Shop model
+
 }
 
 // Define products

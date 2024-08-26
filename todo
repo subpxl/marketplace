@@ -1,20 +1,5 @@
-structure application
+update app for render
 
-change app to individual resource thing
-
-use htmx and jquery for simpler approcah crud
-
-1 appconfig
-models
-to add gorm
-to check product crud
-to check shop crud
-to check category crud
-to check collections crud
-
-
-middleware
-3 files
-
-
-
+gotodashboard with gin crudhtmx thing for home product crudhtmx
+then category crudhtmx
+then collection crudhtmx

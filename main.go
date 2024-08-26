@@ -4,13 +4,14 @@ import (
 
 	// If using Redis for session storage
 
-	"html/template"
 	"log"
 	"marketplace/config"
 	"marketplace/dashboard"
 	"marketplace/product"
 	"marketplace/public"
 	"marketplace/user"
+
+	"github.com/unrolled/render"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/driver/sqlite"
@@ -27,33 +28,39 @@ func initDB() *gorm.DB {
 	return db
 }
 
-func initTemplates() *template.Template {
-	templates := template.Must(template.ParseGlob("templates/*"))
-	return templates
+func initRender() *render.Render {
+	return render.New(render.Options{
+		Directory:  "./templates/backend", // Use full path if necessary
+		Extensions: []string{".html"},
+		Layout:     "layout", // Remove the .html extension
+	})
+}
+
+func initPublicRender() *render.Render {
+	return render.New(render.Options{
+		Directory:  "./templates/frontend",
+		Extensions: []string{".html"},
+		Layout:     "layout",
+		
+	})
 }
 
 func main() {
 
 	// Initialize Gin router
+
 	db := initDB()
-	templates := initTemplates()
+	r := initRender()
+	publicRender := initPublicRender()
+
 	gin.SetMode(gin.DebugMode)
 
 	router := gin.Default()
 
-	appConfig := config.NewAppConfig(db, templates, router)
+	appConfig := config.NewAppConfig(db, r, publicRender, router)
 
 	// Set up static file serving and HTML templates
 	router.Static("/static", "./static")
-	router.LoadHTMLGlob("templates/*")
-
-	// Setup routes
-
-	// public routers
-
-	// // // dashboard routes
-
-	// Initialize the product handler
 
 	// // auth handlers
 	public.SetupRoutes(router, appConfig)
